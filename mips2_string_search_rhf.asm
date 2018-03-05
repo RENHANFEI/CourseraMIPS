@@ -36,7 +36,7 @@ search:	li $v0,12
 	
 	
 loop:	lb $t3,string_input($t2)	# get current address
-	beq $t3,'\n',search
+	beq $t3,'\n',fail
 	beq $t3,'\0',fail
 	beq $t0,$t3,succ
 	addi $t2,$t2,1
@@ -55,7 +55,7 @@ succ:	li $v0,4	# print string
 	syscall
 	
 	li $v0,1	# print integer
-	move $a0,$t2
+	addi $a0,$t2,1
 	syscall
 	
 	li $a0,'\n'	# print '\n'
